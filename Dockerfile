@@ -9,7 +9,7 @@ CMD bash
 # libtinfo5 and python2.7 is needed by infer 0.17.0
 # jq is to edit compile_commands.json file
 # ppl-dev should be installed elsewhere ...
-RUN apt-get update --yes && apt-get install --yes cmake g++-9 clang-10 clang-tools-10 cppcheck valgrind flawfinder wget ppl-dev doxygen perl-modules libtinfo5 patch python2.7 jq \
+RUN apt-get update --yes && apt-get install --yes cmake g++-9 clang-10 clang-tools-10 cppcheck valgrind flawfinder wget ppl-dev doxygen perl-modules libtinfo5 patch patchelf libgfortran5 openssh-client python2.7 jq \
     && rm -rf /var/lib/apt/lists/*
 
 # Patch ppl to allow clang compilation / analysis
