@@ -10,7 +10,7 @@ CMD bash
 # libgfortran5 is for ???
 # jq is to edit compile_commands.json file
 # ppl-dev should be installed elsewhere ...
-RUN apt-get update --yes && apt-get install --yes cmake g++-10 clang-10 clang-tools-10 cppcheck valgrind flawfinder wget ppl-dev doxygen perl-modules libtinfo5 patch patchelf libgfortran5 openssh-client jq \
+RUN apt-get update --yes && apt-get install --yes cmake g++-10 clang-10 clang-tools-10 cppcheck valgrind flawfinder wget ppl-dev doxygen perl libtinfo5 patch patchelf libgfortran5 openssh-client jq \
     && rm -rf /var/lib/apt/lists/*
 
 # Patch ppl to allow clang compilation / analysis
