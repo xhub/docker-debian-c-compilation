@@ -11,7 +11,7 @@ CMD bash
 # jq is to edit compile_commands.json file
 # xz-utils is for unpacking the infer archive
 # ppl-dev should be installed elsewhere ...
-RUN apt-get update --yes && apt-get install --yes cmake g++-11 clang-12 clang-tools-12 cppcheck valgrind flawfinder wget ppl-dev doxygen perl libtinfo6 patch patchelf libgfortran5 openssh-client jq xz-utils \
+RUN apt-get update --yes && apt-get install --yes cmake g++-11 clang-13 clang-tools-13 cppcheck valgrind flawfinder wget ppl-dev doxygen perl libtinfo6 patch patchelf libgfortran5 openssh-client jq xz-utils \
     && rm -rf /var/lib/apt/lists/*
 
 # Patch ppl to allow clang compilation / analysis
