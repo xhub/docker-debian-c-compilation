@@ -1,13 +1,18 @@
 # Description
 
-This docker image is meant to provide all the tools for compiling and analysing C/C++ codebases. It includes:
+This docker image provides all the tools for compiling and analyzing C/C++ codebases. It includes:
 
 ## Compilers
 - gcc
 - clang
 
-## Tools
-- scan-build
-- cppcheck
-- flawfinder
-- infer (of Facebook fame)
+## Analysis tools
+- scan-build (from LLVM/clang)
+- valgrind
+- [cppcheck](https://github.com/danmar/cppcheck)
+- [flawfinder](https://dwheeler.com/flawfinder/)
+- [infer](https://github.com/facebook/infer) (of Facebook fame)
+
+## Build tools
+- cmake
+- Doxygen
