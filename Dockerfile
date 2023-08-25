@@ -12,17 +12,18 @@ CMD bash
 # ppl-dev should be installed elsewhere ...
 # sqlite is for infer?
 # xz-utils is for unpacking the infer archive
-RUN apt-get update --yes && \
+RUN GCC_VER=13; LLVM_VER=16; \
+    apt-get update --yes && \
     apt-get install --yes \
       bzip2 \
       cmake \
-      clang-15 \
-      clang-tools-15 \
+      clang-$LLVM_VER \
+      clang-tools-$LLVM_VER \
       cppcheck \
       doxygen \
       flawfinder \
       graphviz \
-      g++-12 \
+      g++-$GCC_VER \
       jq \
       libgfortran5 \
       libtinfo6 \
