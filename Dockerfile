@@ -12,7 +12,7 @@ CMD bash
 # ppl-dev should be installed elsewhere ...
 # sqlite is for infer?
 # xz-utils is for unpacking the infer archive
-RUN GCC_VER=13; LLVM_VER=16; \
+RUN GCC_VER=13; LLVM_VER=17; \
     apt-get update --yes && \
     apt-get install --yes \
       bzip2 \
