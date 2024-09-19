@@ -12,7 +12,7 @@ CMD bash
 # ppl-dev should be installed elsewhere ...
 # sqlite is for infer?
 # xz-utils is for unpacking the infer archive
-RUN GCC_VER=14; LLVM_VER=18; \
+RUN GCC_VER=14; LLVM_VER=19; \
     apt-get update --yes && \
     apt-get install --yes \
       bzip2 \
@@ -26,7 +26,6 @@ RUN GCC_VER=14; LLVM_VER=18; \
       g++-$GCC_VER \
       jq \
       libgfortran5 \
-      libtinfo6 \
       openssh-client \
       patch \
       patchelf \
@@ -46,11 +45,11 @@ RUN wget -nv http://perso.crans.org/~huber/ppl-clang.patch -O /tmp/ppl-clang.pat
 
 # Install infer from a GitHub release
 # There is a hack to have the html report generation work (dummy git command)
-#RUN VERSION=1.1.0; wget -nv -O - "https://github.com/facebook/infer/releases/download/v$VERSION/infer-linux64-v$VERSION.tar.xz" | tar -C /opt -xJ \
-#    && for b in $(ls -1 /opt/infer-linux64-v$VERSION/bin/); do ln -s /opt/infer-linux64-v$VERSION/bin/$b /usr/local/bin/$b; done && \
-#    ln -s /bin/true /bin/git
+RUN VERSION=1.2.0; wget -nv -O - "https://github.com/facebook/infer/releases/download/v$VERSION/infer-linux-x86_64-v$VERSION.tar.xz" | tar -C /opt -xJ \
+    && for b in $(ls -1 /opt/infer-linux-x86_64-v$VERSION/bin/); do ln -s /opt/infer-linux-x86_64-v$VERSION/bin/$b /usr/local/bin/$b; done && \
+    ln -s /bin/true /bin/git
 
 # install custom infer build
-RUN SERVER=reshop.eu; INFER_NAME=fbinfer-2022.12.12;  wget -nv -O - "https://$SERVER/$INFER_NAME.tar.xz" | tar -C /opt -xJ && \
-    for b in $(ls -1 /opt/${INFER_NAME}/bin/); do ln -s /opt/${INFER_NAME}/bin/$b /usr/local/bin/$b; done && \
-    ln -s /bin/true /bin/git
+#RUN SERVER=reshop.eu; INFER_NAME=fbinfer-2022.12.12;  wget -nv -O - "https://$SERVER/$INFER_NAME.tar.xz" | tar -C /opt -xJ && \
+#    for b in $(ls -1 /opt/${INFER_NAME}/bin/); do ln -s /opt/${INFER_NAME}/bin/$b /usr/local/bin/$b; done && \
+#    ln -s /bin/true /bin/git
