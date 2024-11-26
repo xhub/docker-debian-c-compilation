@@ -15,6 +15,7 @@ CMD bash
 RUN GCC_VER=14; LLVM_VER=19; \
     apt-get update --yes && \
     apt-get install --yes \
+      build-essential \
       bzip2 \
       cmake \
       clang-$LLVM_VER \
