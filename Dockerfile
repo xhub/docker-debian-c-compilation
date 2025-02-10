@@ -27,6 +27,7 @@ RUN GCC_VER=14; LLVM_VER=19; \
       g++-$GCC_VER \
       jq \
       libgfortran5 \
+      lld-$LLVM_VER \
       openssh-client \
       patch \
       patchelf \
