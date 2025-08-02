@@ -16,7 +16,7 @@ CMD bash
 RUN GCC_VER=14; LLVM_VER=20; \
     apt-get update --yes && \
     apt-get install -y --no-install-recommends wget gnupg software-properties-common && \
-    wget -O - https://apt.llvm.org/llvm-snapshot.gpg.key | apt-key add - && \
+    wget -qO- https://apt.llvm.org/llvm-snapshot.gpg.key | tee /etc/apt/trusted.gpg.d/apt.llvm.org.asc   && \
     echo "deb http://apt.llvm.org/unstable/ llvm-toolchain-${LLVM_VERSION} main" >> /etc/apt/sources.list.d/llvm.list && \
     echo "deb-src http://apt.llvm.org/unstable/ llvm-toolchain-${LLVM_VERSION} main" >> /etc/apt/sources.list.d/llvm.list && \
     apt-get update --yes && \
