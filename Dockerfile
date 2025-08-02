@@ -13,7 +13,12 @@ CMD bash
 # ppl-dev should be installed elsewhere ...
 # sqlite is for infer?
 # xz-utils is for unpacking the infer archive
-RUN GCC_VER=14; LLVM_VER=19; \
+RUN GCC_VER=14; LLVM_VER=20; \
+    apt-get update --yes && \
+    apt-get install -y --no-install-recommends wget gnupg software-properties-common && \
+    wget -O - https://apt.llvm.org/llvm-snapshot.gpg.key | apt-key add - && \
+    echo "deb http://apt.llvm.org/unstable/ llvm-toolchain-${LLVM_VERSION} main" >> /etc/apt/sources.list.d/llvm.list && \
+    echo "deb-src http://apt.llvm.org/unstable/ llvm-toolchain-${LLVM_VERSION} main" >> /etc/apt/sources.list.d/llvm.list && \
     apt-get update --yes && \
     apt-get install --yes \
       build-essential \
@@ -43,7 +48,7 @@ RUN GCC_VER=14; LLVM_VER=19; \
     && rm -rf /var/lib/apt/lists/*
 
 # Patch ppl to allow clang compilation / analysis
-RUN wget -nv http://perso.crans.org/~huber/ppl-clang.patch -O /tmp/ppl-clang.patch && \
+RUN wget -nv http://perso.crans.org/~huber/ppl-clang.patch -O /tmp/ppl-clang.patch && sleep 1 && \
     cd /usr/include/x86_64-linux-gnu && \
     patch -p1 < /tmp/ppl-clang.patch; cd -
 
