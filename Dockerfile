@@ -13,7 +13,7 @@ CMD bash
 # ppl-dev should be installed elsewhere ...
 # sqlite is for infer?
 # xz-utils is for unpacking the infer archive
-RUN GCC_VER=14; LLVM_VER=20; \
+RUN GCC_VER=14; LLVM_VER=19; \
     apt-get update --yes && \
     apt-get install --yes \
       build-essential \
@@ -29,6 +29,7 @@ RUN GCC_VER=14; LLVM_VER=20; \
       jq \
       libgfortran5 \
       lld-$LLVM_VER \
+      libunwind8 \
       openssh-client \
       patch \
       patchelf \
