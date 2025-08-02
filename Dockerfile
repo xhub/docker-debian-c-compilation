@@ -8,11 +8,12 @@ CMD bash
 # Setup packages.
 # libtinfo6 is needed by infer 1.1.0 (actually the bundled clang libraries)
 # libgfortran5 is for PATH?
+# libunwind8 is for DynamoRIO
 # jq is to edit compile_commands.json file
 # ppl-dev should be installed elsewhere ...
 # sqlite is for infer?
 # xz-utils is for unpacking the infer archive
-RUN GCC_VER=14; LLVM_VER=19; \
+RUN GCC_VER=14; LLVM_VER=20; \
     apt-get update --yes && \
     apt-get install --yes \
       build-essential \
@@ -50,6 +51,9 @@ RUN wget -nv http://perso.crans.org/~huber/ppl-clang.patch -O /tmp/ppl-clang.pat
 RUN VERSION=1.2.0; wget -nv -O - "https://github.com/facebook/infer/releases/download/v$VERSION/infer-linux-x86_64-v$VERSION.tar.xz" | tar -C /opt -xJ \
     && for b in $(ls -1 /opt/infer-linux-x86_64-v$VERSION/bin/); do ln -s /opt/infer-linux-x86_64-v$VERSION/bin/$b /usr/local/bin/$b; done && \
     ln -s /bin/true /bin/git
+
+RUN VERSION=11.90.20301; wget -nv -O - https://github.com/DynamoRIO/dynamorio/releases/download/cronbuild-$VERSION/DynamoRIO-Linux-$VERSION.tar.gz | tar -C /opt -xz \
+   && for dir in bin64 drmemory/bin64; do for b in $(ls -1 /opt/DynamoRIO-Linux-$VERSION/$dir/); do ln -s /opt/DynamoRIO-Linux-$VERSION/$dir/$b /usr/local/bin/$b; done; done
 
 # install custom infer build
 #RUN SERVER=reshop.eu; INFER_NAME=fbinfer-2022.12.12;  wget -nv -O - "https://$SERVER/$INFER_NAME.tar.xz" | tar -C /opt -xJ && \
