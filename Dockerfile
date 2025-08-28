@@ -13,7 +13,7 @@ CMD bash
 # ppl-dev should be installed elsewhere ...
 # sqlite is for infer?
 # xz-utils is for unpacking the infer archive
-RUN GCC_VER=14; LLVM_VER=20; \
+RUN GCC_VER=15; LLVM_VER=21; \
     apt-get update --yes && \
     apt-get install -y --no-install-recommends wget gnupg software-properties-common && \
     wget -qO- https://apt.llvm.org/llvm-snapshot.gpg.key | tee /etc/apt/trusted.gpg.d/apt.llvm.org.asc   && \
@@ -58,7 +58,7 @@ RUN VERSION=1.2.0; wget -nv -O - "https://github.com/facebook/infer/releases/dow
     && for b in $(ls -1 /opt/infer-linux-x86_64-v$VERSION/bin/); do ln -s /opt/infer-linux-x86_64-v$VERSION/bin/$b /usr/local/bin/$b; done && \
     ln -s /bin/true /bin/git
 
-RUN VERSION=11.90.20301; wget -nv -O - https://github.com/DynamoRIO/dynamorio/releases/download/cronbuild-$VERSION/DynamoRIO-Linux-$VERSION.tar.gz | tar -C /opt -xz \
+RUN VERSION=11.90.20322; wget -nv -O - https://github.com/DynamoRIO/dynamorio/releases/download/cronbuild-$VERSION/DynamoRIO-Linux-$VERSION.tar.gz | tar -C /opt -xz \
    && for dir in bin64 drmemory/bin64; do for b in $(ls -1 /opt/DynamoRIO-Linux-$VERSION/$dir/); do ln -s /opt/DynamoRIO-Linux-$VERSION/$dir/$b /usr/local/bin/$b; done; done
 
 # install custom infer build
